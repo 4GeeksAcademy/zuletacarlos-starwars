@@ -1,32 +1,87 @@
-export const initialStore=()=>{
-  return{
+export const initialStore = () => {
+  return {
+    // Dejamos message por si acaso quieres mostrar alertas globales luego, 
+    // pero borramos el array de 'todos' que no sirve para nada aquí.
     message: null,
-    todos: [
-      {
-        id: 1,
-        title: "Make the bed",
-        background: null,
-      },
-      {
-        id: 2,
-        title: "Do my homework",
-        background: null,
-      }
-    ]
+    people: [],
+    planets: [],
+    vehicles: [],
+    favorites: [] 
   }
 }
 
 export default function storeReducer(store, action = {}) {
   switch(action.type){
-    case 'add_task':
+   
+    case 'load_people':
+      return {
+        ...store,
+        people: action.payload 
+      };
+      
+    case 'load_planets':
+      return {
+        ...store,
+        planets: action.payload 
+      };
 
-      const { id,  color } = action.payload
+    case 'load_vehicles':
+      return {
+        ...store,
+        vehicles: action.payload 
+      };
+    
+    case 'add_favorite':
+    
+      const exists = store.favorites.some(item => item.uid === action.payload.uid);
+      
+      if (exists) {
+        return store;
+      }
 
       return {
         ...store,
-        todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
+        favorites: [...store.favorites, action.payload]
       };
+
+    case 'remove_favorite':
+      
+    return {
+        ...store,
+        favorites: store.favorites.filter(item => item.uid !== action.payload.uid)
+      };
+
     default:
       throw Error('Unknown action.');
   }    
 }
+
+export const loadPeople = async (dispatch) => {
+  try {
+    const res = await fetch("https://www.swapi.tech/api/people/");
+    const data = await res.json();
+    dispatch({ type: 'load_people', payload: data.results });
+  } catch (error) {
+    console.error("Error loading people:", error);
+  }
+};
+
+export const loadPlanets = async (dispatch) => {
+  try {
+    const res = await fetch("https://www.swapi.tech/api/planets/");
+    const data = await res.json();
+    dispatch({ type: 'load_planets', payload: data.results });
+  } catch (error) {
+    console.error("Error loading planets:", error);
+  }
+};
+
+export const loadVehicles = async (dispatch) => {
+  try {
+    const res = await fetch("https://www.swapi.tech/api/vehicles/");
+    const data = await res.json();
+    dispatch({ type: 'load_vehicles', payload: data.results });
+  } catch (error) {
+    console.error("Error loading vehicles:", error);
+  }
+};
