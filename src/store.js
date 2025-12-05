@@ -1,7 +1,5 @@
 export const initialStore = () => {
   return {
-    // Dejamos message por si acaso quieres mostrar alertas globales luego, 
-    // pero borramos el array de 'todos' que no sirve para nada aquí.
     message: null,
     people: [],
     planets: [],

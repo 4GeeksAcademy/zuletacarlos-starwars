@@ -8,7 +8,7 @@ export const Home = () => {
   return (
     <div className="text-center mt-5 container">
       
-      {/* SECCIÓN PERSONAJES */}
+      {}
       <h1 className="text-danger text-start">Characters</h1>
       <div className="d-flex flex-row overflow-scroll mb-5 gap-3">
         {store.people && store.people.length > 0 ? (
@@ -22,7 +22,7 @@ export const Home = () => {
         )}
       </div>
 
-      {/* SECCIÓN PLANETAS */}
+      {}
       <h1 className="text-danger text-start">Planets</h1>
       <div className="d-flex flex-row overflow-scroll mb-5 gap-3">
          {store.planets && store.planets.length > 0 ? (
@@ -34,7 +34,7 @@ export const Home = () => {
          )}
       </div>
 
-      {/* SECCIÓN VEHÍCULOS */}
+      {}
       <h1 className="text-danger text-start">Vehicles</h1>
       <div className="d-flex flex-row overflow-scroll mb-5 gap-3">
          {store.vehicles && store.vehicles.length > 0 ? (
