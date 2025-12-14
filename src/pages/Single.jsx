@@ -16,15 +16,21 @@ export const Single = () => {
       .catch(err => console.error(err));
   }, [type, uid]);
 
-  const imageType = type === "people" ? "characters" : type;
-  const imageUrl = `https://raw.githubusercontent.com/breatheco-de/swapi-images/master/public/images/${imageType}/${uid}.jpg`;
+  let imgType = type;
+  if (type === "people") {
+    imgType = "characters";
+  }
+
+  let imageUrl = `https://raw.githubusercontent.com/tbone849/star-wars-guide/master/build/assets/img/${imgType}/${uid}.jpg`;
+
+  if (type === "planets" && uid == "1") {
+    imageUrl = "https://upload.wikimedia.org/wikipedia/en/6/6d/Tatooine_%28fictional_desert_planet%29.jpg";
+  }
 
   return (
     <div className="container mt-5">
-      { }
       {item ? (
         <>
-          { }
           <div className="d-flex justify-content-center align-items-center mb-5">
             <img
               src={imageUrl}
@@ -45,7 +51,6 @@ export const Single = () => {
 
           <hr className="my-4 text-danger" />
 
-          { }
           <div className="row text-danger text-center">
             {type === "people" && (
               <>

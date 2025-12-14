@@ -4,35 +4,35 @@ export const initialStore = () => {
     people: [],
     planets: [],
     vehicles: [],
-    favorites: [] 
+    favorites: []
   }
 }
 
 export default function storeReducer(store, action = {}) {
-  switch(action.type){
-   
+  switch (action.type) {
+
     case 'load_people':
       return {
         ...store,
-        people: action.payload 
+        people: action.payload
       };
-      
+
     case 'load_planets':
       return {
         ...store,
-        planets: action.payload 
+        planets: action.payload
       };
 
     case 'load_vehicles':
       return {
         ...store,
-        vehicles: action.payload 
+        vehicles: action.payload
       };
-    
+
     case 'add_favorite':
-    
+
       const exists = store.favorites.some(item => item.uid === action.payload.uid);
-      
+
       if (exists) {
         return store;
       }
@@ -43,15 +43,15 @@ export default function storeReducer(store, action = {}) {
       };
 
     case 'remove_favorite':
-      
-    return {
+
+      return {
         ...store,
         favorites: store.favorites.filter(item => item.uid !== action.payload.uid)
       };
 
     default:
       throw Error('Unknown action.');
-  }    
+  }
 }
 
 export const loadPeople = async (dispatch) => {

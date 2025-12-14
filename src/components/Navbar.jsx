@@ -9,7 +9,7 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-light mb-3">
 			<div className="container">
-				{}
+				{ }
 				<Link to="/">
 					<img
 						src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/2560px-Star_Wars_Logo.svg.png"
@@ -19,7 +19,7 @@ export const Navbar = () => {
 				</Link>
 
 				<div className="ml-auto">
-					{}
+					{ }
 					<div className="btn-group">
 						<button
 							type="button"
@@ -34,7 +34,7 @@ export const Navbar = () => {
 						</button>
 
 						<ul className="dropdown-menu dropdown-menu-end">
-							{}
+							{ }
 							{!store || !store.favorites || store.favorites.length === 0 ? (
 								<li className="dropdown-item text-center">(Empty)</li>
 							) : (

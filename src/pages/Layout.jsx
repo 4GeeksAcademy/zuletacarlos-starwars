@@ -1,26 +1,28 @@
-import React, { useEffect } from "react"; 
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import ScrollToTop from "../components/ScrollToTop";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
-import { loadPeople, loadPlanets, loadVehicles } from "../store";
-import useGlobalReducer from "../hooks/useGlobalReducer";
+import ScrollToTop from "../components/ScrollToTop.jsx";
+import { Navbar } from "../components/Navbar.jsx";
+import { Footer } from "../components/Footer.jsx";
 
-// Base component that maintains the navbar and footer throughout the page and the scroll to top functionality.
+import { loadPeople, loadPlanets, loadVehicles } from "../store.js";
+import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+
 export const Layout = () => {
-    
+
     const { dispatch } = useGlobalReducer();
 
     useEffect(() => {
         loadPeople(dispatch);
         loadPlanets(dispatch);
         loadVehicles(dispatch);
-    }, []); 
+    }, []);
 
     return (
         <ScrollToTop>
             <Navbar />
-            <Outlet />
+            <div className="container">
+                <Outlet />
+            </div>
             <Footer />
         </ScrollToTop>
     );
